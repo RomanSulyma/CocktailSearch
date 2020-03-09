@@ -8,7 +8,7 @@ export const renderPageButtons = (page, allPages) => {
                     <svg class="search__icon">
                         <use href="img/icons.svg#icon-triangle-left"></use>
                     </svg>
-                    <span>Page ${page}</span>
+                    <span>Page ${page - 1}</span>
                 </button>`;
 
     const buttonRight = `<button class="btn-inline results__btn--next">

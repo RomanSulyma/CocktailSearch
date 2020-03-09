@@ -8,5 +8,14 @@ export const values = {
     loader : 'loader',
     cors : 'https://crossorigin.me/',
     limit : 10,
-    pageParent : '.results__pages'
+    pageParent : '.results__pages',
+    recipe : '.recipe',
+    resultListElem : '.results__link',
+    ingridientsList : '.recipe__ingredient-list',
+    shoopingList : '.shopping__list',
+    shoppingItem : '.shopping__item',
+    recipeBtn : '.recipe__btn',
+    deleteBtn : '.shopping__delete',
+    likesList : '.likes__list',
+    likeButton : '.recipe__love'
 };
