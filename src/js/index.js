@@ -40,10 +40,9 @@ const paginationController = (page) => {
 
 const recipeController = async (id) => {
     // create instance of likes list
-    if(!state.likesList) {
-        console.log(state.likesList);
+
         state.likesList = new LikesList();
-    }
+
     recipeView.clearRecipe();
     //get recipe from page and convert
     let recipeElem = await getSingleRecieptInfo(id);
@@ -144,13 +143,14 @@ window.addEventListener("load", event => {
     }
     if(localStorage.getItem('state')) {
         state = JSON.parse(localStorage.getItem('state'));
-        console.log(state);
-        window.state = state;
+        shoppingListView.renderShoppingList(state.shoppingList.list);
+
+        recipeController(state.recipe.id);
+        likesListController();
     }
 });
 
 window.addEventListener('click', () => {
     const stateStr = JSON.stringify(state);
     localStorage.setItem('state',stateStr);
-    //FIXME remove hardcode
 });
