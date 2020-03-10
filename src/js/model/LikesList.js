@@ -17,7 +17,7 @@ export class LikesList {
     }
 
     isLiked (recipe) {
-        return recipe.isLiked ? true : false;
+        return this.list.findIndex(elem => recipe.id === elem.id) !== -1;
     }
 
 }

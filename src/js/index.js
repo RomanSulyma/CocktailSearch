@@ -39,7 +39,11 @@ const paginationController = (page) => {
 };
 
 const recipeController = async (id) => {
-
+    // create instance of likes list
+    if(!state.likesList) {
+        console.log(state.likesList);
+        state.likesList = new LikesList();
+    }
     recipeView.clearRecipe();
     //get recipe from page and convert
     let recipeElem = await getSingleRecieptInfo(id);
@@ -52,6 +56,8 @@ const recipeController = async (id) => {
     recipe.parseIngridients();
     // Render ingridients on UI
     recipeView.renderIngridients(state.recipe.ingridients);
+    // Render Like button
+    likesListView.toggleButton(state.likesList.isLiked(state.recipe));
 };
 
 const shoppingListControllerAdd = () => {
@@ -76,20 +82,16 @@ const shoppingListControllerDelete = (id) => {
 };
 
 const likesListController = () => {
-    if(!state.likesList) {
-        state.likesList = new LikesList();
-    }
     //clear shoopingList UI
     likesListView.deleteLikesList();
     // if true add to likesList
-    console.log(state.likesList.isLiked(state.recipe));
     if(state.likesList.isLiked(state.recipe)) {
         state.likesList.deleteItem(state.recipe);
     } else {
         state.likesList.addItem(state.recipe)
     }
     //toggle button
-    console.log(state.likesList.isLiked(state.recipe));
+    state.likesList.isLiked(state.recipe);
     likesListView.toggleButton(state.likesList.isLiked(state.recipe));
     //renderList
     likesListView.renderLikesList(state.likesList.list);
@@ -103,7 +105,6 @@ document.querySelector(values.searchButton).addEventListener('click', event => {
 document.querySelector(values.pageParent).addEventListener('click', event => {
 
     const pageClassName = event.target.closest('.btn-inline');
-    console.log(pageClassName);
 
     if(pageClassName.classList.contains('results__btn--prev')) {
         paginationController(parseInt(pageView.getPageNumber()) - 1);
@@ -133,7 +134,23 @@ document.querySelector(values.recipe).addEventListener('click', event => {
 document.querySelector(values.shoopingList).addEventListener('click', event => {
     if(event.target.matches(`${values.deleteBtn}, ${values.deleteBtn} *`)) {
         const id = event.target.closest(values.shoppingItem).getAttribute('data-item-id');
-        console.log(id);
         shoppingListControllerDelete(id);
     }
+});
+
+window.addEventListener("load", event => {
+    if(window.location.hash) {
+        recipeController(window.location.hash.replace('#',''));
+    }
+    if(localStorage.getItem('state')) {
+        state = JSON.parse(localStorage.getItem('state'));
+        console.log(state);
+        window.state = state;
+    }
+});
+
+window.addEventListener('click', () => {
+    const stateStr = JSON.stringify(state);
+    localStorage.setItem('state',stateStr);
+    //FIXME remove hardcode
 });

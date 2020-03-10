@@ -1,8 +1,6 @@
-import {values} from '../Base';
-
 export class Recipe {
 
-    constructor(id, strDrink, strInstructions, strDrinkThumb, ingridients, isLiked) {
+    constructor(id, strDrink, strInstructions, strDrinkThumb, ingridients, isLiked = false) {
         this.id = id;
         this.strDrink = strDrink;
         this.strInstructions = strInstructions;
@@ -17,7 +15,6 @@ export class Recipe {
             value = value.replace(null,'').replace(null, '');
 
             if(!value.match(/^\s+$/)) {
-                console.log(value);
                 return value;
             }
         });

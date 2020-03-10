@@ -21,7 +21,6 @@ export const renderLikesList = (likesList) => {
 
 export const toggleButton = (isLiked) => {
     let elem = document.querySelector(`${values.likeButton} use`);
-    console.log(elem);
     isLiked ? elem.setAttribute('href', 'img/icons.svg#icon-heart') : elem.setAttribute('href', 'img/icons.svg#icon-heart-outlined');
 };
 
