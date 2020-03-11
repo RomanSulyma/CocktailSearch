@@ -6,7 +6,7 @@ import * as recipeView from './view/RecipeView';
 import * as shoppingListView from './view/ShoppingListView';
 import * as likesListView from './view/LikesListView';
 import {values} from './Base';
-import {convertToRecipe} from "./model/Recipe";
+import {convertToRecipe, Recipe} from "./model/Recipe";
 import {ShoppingList} from "./model/ShoppingList";
 import {LikesList} from "./model/LikesList";
 
@@ -19,10 +19,10 @@ const searchController = async () => {
      //changes page number to first
      pageView.changePageNumber(1);
      // get input and clear input field
-     state.searchInput = searchView.getSearchInput();
+     const searchInput = searchView.getSearchInput();
      searchView.toggleSpinner();
      // get reciepts list
-     state.recieptsList = await getReciepts(state.searchInput);
+     state.recieptsList = await getReciepts(searchInput);
      // render receipts on UI
      searchView.renderRecieptsPagination(state.recieptsList, pageView.getPageNumber(), values.limit);
      // render buttons
@@ -39,10 +39,6 @@ const paginationController = (page) => {
 };
 
 const recipeController = async (id) => {
-    // create instance of likes list
-
-        state.likesList = new LikesList();
-
     recipeView.clearRecipe();
     //get recipe from page and convert
     let recipeElem = await getSingleRecieptInfo(id);
@@ -60,9 +56,6 @@ const recipeController = async (id) => {
 };
 
 const shoppingListControllerAdd = () => {
-    if(!state.shoppingList) {
-        state.shoppingList = new ShoppingList();
-    }
     //clear shoopingList UI
     shoppingListView.deleteShoppingList();
     //add reciept to shopping list
@@ -137,20 +130,41 @@ document.querySelector(values.shoopingList).addEventListener('click', event => {
     }
 });
 
+document.querySelector(values.likesList).addEventListener('click', event => {
+   event.preventDefault();
+   const elem = event.target.closest(values.likeListElem);
+   recipeController(elem.getAttribute('href'));
+});
+
 window.addEventListener("load", event => {
+
+    const likesList = JSON.parse(localStorage.getItem('likesList'));
+    const shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
+
+    if(likesList) {
+        state.likesList.list = likesList;
+        likesListView.renderLikesList(state.likesList.list);
+    }
+    if(shoppingList) {
+        state.shoppingList.list = shoppingList;
+        shoppingListView.renderShoppingList(state.shoppingList.list);
+    }
     if(window.location.hash) {
         recipeController(window.location.hash.replace('#',''));
-    }
-    if(localStorage.getItem('state')) {
-        state = JSON.parse(localStorage.getItem('state'));
-        shoppingListView.renderShoppingList(state.shoppingList.list);
-
-        recipeController(state.recipe.id);
-        likesListController();
     }
 });
 
 window.addEventListener('click', () => {
-    const stateStr = JSON.stringify(state);
-    localStorage.setItem('state',stateStr);
+   localStorage.setItem('likesList', JSON.stringify(state.likesList.list));
+   localStorage.setItem('shoppingList', JSON.stringify(state.shoppingList.list));
 });
+
+const init = () => {
+  state.likesList = new LikesList();
+  state.shoppingList = new ShoppingList();
+  state.recipe = new Recipe();
+  state.recieptsList = [];
+};
+
+init();
+

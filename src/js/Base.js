@@ -17,5 +17,6 @@ export const values = {
     recipeBtn : '.recipe__btn',
     deleteBtn : '.shopping__delete',
     likesList : '.likes__list',
-    likeButton : '.recipe__love'
+    likeButton : '.recipe__love',
+    likeListElem : '.likes__link'
 };
