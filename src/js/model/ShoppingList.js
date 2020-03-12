@@ -1,30 +1,24 @@
 import uniqid from 'uniqid';
+import {List} from './List';
 
+export class ShoppingList extends List {
 
-export class ShoppingList {
-
-    constructor(list) {
+    constructor() {
+        super();
         this.list = [];
     }
 
-    addItem (ingridients) {
-        ingridients.forEach(value => {
+    addItem (recipe) {
+        recipe.ingredients.forEach(value => {
             const item = {
                 name : value,
                 id : this.generateID()
             };
-
             this.list.push(item);
         });
-    }
-
-    deleteItem (id) {
-        const index = this.list.findIndex( value => id === value.id);
-        this.list.splice(index, 1);
     }
 
     generateID () {
         return uniqid();
     }
-
 }

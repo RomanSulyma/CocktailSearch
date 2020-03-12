@@ -1,8 +1,13 @@
 import {values} from '../Base';
 
+/**
+ * Render shopping list element and insert to page
+ *
+ * @param shoppingList
+ */
 export const renderShoppingList = (shoppingList) => {
 
-    shoppingList.forEach( value => {
+    shoppingList.forEach(value => {
 
         const elem = `<li class="shopping__item" data-item-id = "${value.id}">
                     <p class="shopping__description">${value.name}</p>
@@ -13,12 +18,15 @@ export const renderShoppingList = (shoppingList) => {
                     </button>
                 </li>`;
 
-        document.querySelector(values.shoopingList).insertAdjacentHTML("beforeend", elem);
+        document.querySelector(values.shoppingList).insertAdjacentHTML('beforeend', elem);
     });
 };
 
+/**
+ * Clear shopping list
+ */
 export const deleteShoppingList = () => {
-    document.querySelector(values.shoopingList).innerHTML = '';
+    document.querySelector(values.shoppingList).innerHTML = '';
 };
 
 

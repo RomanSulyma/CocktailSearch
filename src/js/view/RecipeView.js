@@ -1,10 +1,13 @@
 import {values} from '../Base';
 
-export const renderRecipe = recipe => {
+/**
+ * Render Recipe and insert to page
+ *
+ * @param recipe
+ */
+export const renderRecipe = (recipe) => {
 
-  const recipeElem =
-
-  `<figure class="recipe__fig">
+    const elem = `<figure class="recipe__fig">
                 <img src="${recipe.strDrinkThumb}" class="recipe__img">
                 <h1 class="recipe__title">
                     <span>${recipe.strDrink}</span>
@@ -43,18 +46,21 @@ export const renderRecipe = recipe => {
                     </svg>
                     <span>Add to shopping list</span>
                 </button>
-            </div>
-`;
+            </div>`;
 
-  document.querySelector(values.recipe).insertAdjacentHTML("afterbegin", recipeElem);
-
+    document.querySelector(values.recipe).insertAdjacentHTML('beforeend', elem);
 };
 
-export const renderIngridients = (ingridients) => {
+/**
+ * Render ingredients on Recipe model
+ *
+ * @param recipe
+ */
+export const renderIngredients = (recipe) => {
 
-  ingridients.forEach( value => {
+    recipe.ingredients.forEach(value => {
 
-      let ingridient = `
+        const ingredient = `
                         <li class="recipe__item">
                         <svg class="recipe__icon">
                             <use href="img/icons.svg#icon-check"></use>
@@ -64,13 +70,15 @@ export const renderIngridients = (ingridients) => {
                         </div>
                     </li>`;
 
-    document.querySelector(values.ingridientsList).insertAdjacentHTML("beforeend", ingridient);
-  })
-
+        document.querySelector(values.ingredientsList).insertAdjacentHTML("beforeend", ingredient);
+    });
 };
 
+/**
+ * Clear Recipe
+ */
 export const clearRecipe = () => {
-  document.querySelector(values.recipe).innerHTML = '';
+    document.querySelector(values.recipe).innerHTML = '';
 };
 
 

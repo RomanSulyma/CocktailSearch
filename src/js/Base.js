@@ -11,12 +11,16 @@ export const values = {
     pageParent : '.results__pages',
     recipe : '.recipe',
     resultListElem : '.results__link',
-    ingridientsList : '.recipe__ingredient-list',
-    shoopingList : '.shopping__list',
+    ingredientsList : '.recipe__ingredient-list',
+    shoppingList : '.shopping__list',
     shoppingItem : '.shopping__item',
     recipeBtn : '.recipe__btn',
     deleteBtn : '.shopping__delete',
     likesList : '.likes__list',
     likeButton : '.recipe__love',
-    likeListElem : '.likes__link'
+    likeListElem : '.likes__link',
+    dataPage : 'data-page',
+    imgLiked : 'img/icons.svg#icon-heart',
+    imgUnliked : 'img/icons.svg#icon-heart-outlined',
+    dataItemId : 'data-item-id'
 };

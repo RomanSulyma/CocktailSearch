@@ -1,8 +1,13 @@
 import {values} from '../Base';
 
+/**
+ * Render likes list element and insert to page
+ *
+ * @param likesList
+ */
 export const renderLikesList = (likesList) => {
 
-    likesList.forEach( value => {
+    likesList.forEach(value => {
 
         const elem = `<li>
                             <a class="likes__link" href="${value.id}">
@@ -15,15 +20,23 @@ export const renderLikesList = (likesList) => {
                             </a>
                         </li>`;
 
-        document.querySelector(values.likesList).insertAdjacentHTML("beforeend", elem);
+        document.querySelector(values.likesList).insertAdjacentHTML('beforeend', elem);
     });
 };
 
+/**
+ * Toggle (like/unlike) button on recipe form
+ *
+ * @param isLiked
+ */
 export const toggleButton = (isLiked) => {
-    let elem = document.querySelector(`${values.likeButton} use`);
-    isLiked ? elem.setAttribute('href', 'img/icons.svg#icon-heart') : elem.setAttribute('href', 'img/icons.svg#icon-heart-outlined');
+    const elem = document.querySelector(`${values.likeButton} use`);
+    isLiked ? elem.setAttribute('href', values.imgLiked) : elem.setAttribute('href', values.imgUnliked);
 };
 
+/**
+ * Clear likes list
+ */
 export const deleteLikesList = () => {
     document.querySelector(values.likesList).innerHTML = '';
 };

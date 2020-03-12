@@ -1,8 +1,13 @@
 import axios from 'axios';
 import {values} from '../Base';
 
-
-export const getReciepts = async (reciept) => {
+/**
+ * Get list of recipes from api
+ *
+ * @param id
+ * @returns {Promise<*>}
+ */
+export const getRecipes = async (id) => {
     const data = await axios({
         "method":"GET",
         "url":`https://${values.host}/filter.php`,
@@ -11,13 +16,20 @@ export const getReciepts = async (reciept) => {
             "x-rapidapi-host":`${values.host}`,
             "x-rapidapi-key":`${values.key}`
         },"params":{
-            "i": `${reciept}`
+            "i": `${id}`
         }
     });
+
     return data.data.drinks;
 };
 
-export const getSingleRecieptInfo = async (id) => {
+/**
+ * Get single recipe from api
+ *
+ * @param id
+ * @returns {Promise<*>}
+ */
+export const getSingleRecipeInfo = async (id) => {
     const data = await axios({
         "method":"GET",
         "url":`https://${values.host}/lookup.php`,

@@ -1,5 +1,11 @@
 import {values} from "../Base";
 
+/**
+ * Render page buttons on UI
+ *
+ * @param page
+ * @param allPages
+ */
 export const renderPageButtons = (page, allPages) => {
 
     deletePages();
@@ -26,14 +32,27 @@ export const renderPageButtons = (page, allPages) => {
     }
 };
 
+/**
+ * Delete pages before update
+ */
 const deletePages = () => {
     document.querySelector(values.pageParent).innerHTML = '';
 };
 
+/**
+ * Get page number from UI
+ *
+ * @returns {string}
+ */
 export const getPageNumber = () => {
-    return document.querySelector(values.resultsList).getAttribute('data-page');
+    return document.querySelector(values.resultsList).getAttribute(values.dataPage);
 };
 
-export const changePageNumber = (attribValue) => {
-    document.querySelector(values.resultsList).setAttribute('data-page', attribValue);
+/**
+ * Change page number on UI
+ *
+ * @param page
+ */
+export const changePageNumber = (page) => {
+    document.querySelector(values.resultsList).setAttribute(values.dataPage, page);
 };

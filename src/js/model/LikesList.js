@@ -1,7 +1,9 @@
+import {List} from './List';
 
-export class LikesList {
+export class LikesList extends List{
 
-    constructor(list) {
+    constructor() {
+        super();
         this.list = [];
     }
 
@@ -10,14 +12,7 @@ export class LikesList {
             this.list.push(recipe);
     }
 
-    deleteItem (recipe) {
-        recipe.isLiked = false;
-        const index = this.list.findIndex( value => recipe.id === value.id);
-        this.list.splice(index, 1);
-    }
-
     isLiked (recipe) {
         return this.list.findIndex(elem => recipe.id === elem.id) !== -1;
     }
-
 }
