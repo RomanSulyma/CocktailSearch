@@ -25,16 +25,6 @@ export const renderLikesList = (likesList) => {
 };
 
 /**
- * Toggle (like/unlike) button on recipe form
- *
- * @param isLiked
- */
-export const toggleButton = (isLiked) => {
-    const elem = document.querySelector(`${values.likeButton} use`);
-    isLiked ? elem.setAttribute('href', values.imgLiked) : elem.setAttribute('href', values.imgUnliked);
-};
-
-/**
  * Clear likes list
  */
 export const deleteLikesList = () => {

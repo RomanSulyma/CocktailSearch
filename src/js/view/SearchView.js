@@ -31,8 +31,6 @@ const renderRecipe = (recipe) => {
  */
 export const renderRecipeList = (recipeList, page, limit) => {
 
-    clearSearchListUI();
-
     const start = (page - 1) * limit;
     const end = page * limit;
     const arrPerPage = recipeList.slice(start, end);
@@ -56,7 +54,7 @@ export const getSearchInput = () => {
 /**
  * Clear input and searchList
  */
-const clearSearchListUI = () => {
+export const deleteSearchList = () => {
     document.querySelector(values.resultsList).innerHTML = '';
     document.querySelector(values.pageParent).innerHTML = '';
 };

@@ -22,5 +22,8 @@ export const values = {
     dataPage : 'data-page',
     imgLiked : 'img/icons.svg#icon-heart',
     imgUnliked : 'img/icons.svg#icon-heart-outlined',
-    dataItemId : 'data-item-id'
+    dataItemId : 'data-item-id',
+    btnInline : '.btn-inline',
+    pagePrev : 'results__btn--prev',
+    pageNext : 'results__btn--next'
 };

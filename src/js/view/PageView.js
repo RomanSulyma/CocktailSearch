@@ -8,17 +8,16 @@ import {values} from "../Base";
  */
 export const renderPageButtons = (page, allPages) => {
 
-    deletePages();
-
-    const buttonLeft = ` <button class="btn-inline results__btn--prev">
-                    <svg class="search__icon">
-                        <use href="img/icons.svg#icon-triangle-left"></use>
-                    </svg>
+    page = parseInt(page);
+    const buttonLeft = ` <button class="btn-inline results__btn--prev"  data-page="${page - 1}">
                     <span>Page ${page - 1}</span>
+                    <svg class="search__icon">
+                        <use href="img/icons.svg#icon-triangle-right"></use>
+                    </svg>
                 </button>`;
 
-    const buttonRight = `<button class="btn-inline results__btn--next">
-                    <span>Page ${parseInt(page) + 1}</span>
+    const buttonRight = `<button class="btn-inline results__btn--next" data-page="${page + 1}">
+                    <span>Page ${page + 1}</span>
                     <svg class="search__icon">
                         <use href="img/icons.svg#icon-triangle-right"></use>
                     </svg>
@@ -35,7 +34,7 @@ export const renderPageButtons = (page, allPages) => {
 /**
  * Delete pages before update
  */
-const deletePages = () => {
+export const deletePageButtons = () => {
     document.querySelector(values.pageParent).innerHTML = '';
 };
 

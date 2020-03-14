@@ -4,10 +4,11 @@ import {values} from '../Base';
 /**
  * Get list of recipes from api
  *
- * @param id
  * @returns {Promise<*>}
+ * @param searchInput
  */
-export const getRecipes = async (id) => {
+export const getRecipes = async (searchInput) => {
+    try {
     const data = await axios({
         "method":"GET",
         "url":`https://${values.host}/filter.php`,
@@ -16,11 +17,13 @@ export const getRecipes = async (id) => {
             "x-rapidapi-host":`${values.host}`,
             "x-rapidapi-key":`${values.key}`
         },"params":{
-            "i": `${id}`
+            "i": `${searchInput}`
         }
     });
-
     return data.data.drinks;
+    } catch (e) {
+        alert('Something wrong :(');
+    }
 };
 
 /**
@@ -30,17 +33,20 @@ export const getRecipes = async (id) => {
  * @returns {Promise<*>}
  */
 export const getSingleRecipeInfo = async (id) => {
-    const data = await axios({
-        "method":"GET",
-        "url":`https://${values.host}/lookup.php`,
-        "headers":{
-            "content-type":"application/octet-stream",
-            "x-rapidapi-host":`${values.host}`,
-            "x-rapidapi-key":`${values.key}`
-        },"params":{
-            "i":`${id}`
-        }
-    });
-
-    return data.data.drinks[0];
+    try {
+        const data = await axios({
+            "method":"GET",
+            "url":`https://${values.host}/lookup.php`,
+            "headers":{
+                "content-type":"application/octet-stream",
+                "x-rapidapi-host":`${values.host}`,
+                "x-rapidapi-key":`${values.key}`
+            },"params":{
+                "i":`${id}`
+            }
+        });
+        return data.data.drinks[0];
+    } catch (e) {
+        alert('Something wrong :(');
+    }
 };

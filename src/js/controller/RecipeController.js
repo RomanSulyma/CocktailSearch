@@ -1,22 +1,23 @@
 import * as recipeView from "../view/RecipeView";
 import {getSingleRecipeInfo} from "../model/Search";
 import {convertToRecipe} from "../model/Recipe";
-import * as likesListView from "../view/LikesListView";
 import {state} from "../index";
 
 export const recipeController = async (id) => {
-    recipeView.clearRecipe();
+    //clear previous recipe
+    recipeView.deleteRecipe();
     //get recipe from page and convert
-    let recipeElem = await getSingleRecipeInfo(id);
-    let recipe = convertToRecipe(recipeElem);
-    //save to state
-    state.recipe = recipe;
+    const recipeElem = await getSingleRecipeInfo(id);
+    //save to state and convert to recipe
+    state.recipe = convertToRecipe(recipeElem);
     // render on UI
     recipeView.renderRecipe(state.recipe);
+    //toggle button
+    recipeView.toggleButton(state.likesList.isLiked(state.recipe));
     //Parse ingredients
-    recipe.parseIngredients();
+    state.recipe.parseIngredients();
     // Render ingredients on UI
     recipeView.renderIngredients(state.recipe);
     // Render Like button
-    likesListView.toggleButton(state.likesList.isLiked(state.recipe));
+    recipeView.toggleButton(state.likesList.isLiked(state.recipe));
 };

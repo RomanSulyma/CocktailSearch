@@ -75,9 +75,19 @@ export const renderIngredients = (recipe) => {
 };
 
 /**
+ * Toggle (like/unlike) button on recipe form
+ *
+ * @param isLiked
+ */
+export const toggleButton = (isLiked) => {
+    const elem = document.querySelector(`${values.likeButton} use`);
+    isLiked ? elem.setAttribute('href', values.imgLiked) : elem.setAttribute('href', values.imgUnliked);
+};
+
+/**
  * Clear Recipe
  */
-export const clearRecipe = () => {
+export const deleteRecipe = () => {
     document.querySelector(values.recipe).innerHTML = '';
 };
 

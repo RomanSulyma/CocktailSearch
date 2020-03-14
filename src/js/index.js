@@ -12,10 +12,7 @@ import {paginationController} from './controller/PaginationController';
 import {recipeController} from './controller/RecipeController';
 import {shoppingListControllerAdd, shoppingListControllerDelete} from './controller/ShoppingListController';
 
-
-// app info
 export let state = {};
-window.state = state;
 
 /**
  * Initialize app variables and add event listeners
@@ -26,31 +23,33 @@ const init = () => {
   state.recipe = new Recipe();
   state.recieptsList = [];
 
+    // search elements by click on search button
     document.querySelector(values.searchButton).addEventListener('click', event => {
         event.preventDefault();
         searchController();
     });
 
+    // change page and search elements
     document.querySelector(values.pageParent).addEventListener('click', event => {
 
-        const pageClassName = event.target.closest('.btn-inline');
-
-        if(pageClassName.classList.contains('results__btn--prev')) {
+        const pageClassName = event.target.closest(values.btnInline);
+        console.log(pageClassName);
+        if(pageClassName.classList.contains(values.pagePrev)) {
             paginationController(parseInt(pageView.getPageNumber()) - 1);
         }
-        if(pageClassName.classList.contains('results__btn--next')) {
+        if(pageClassName.classList.contains(values.pageNext)) {
             paginationController(parseInt(pageView.getPageNumber()) + 1);
         }
     });
 
+    // render recipe by click on search result
     document.querySelector(values.resultsList).addEventListener('click', event => {
-
         const elem = event.target.closest(values.resultListElem);
         const id = elem.getAttribute('href').replace('#','');
-
         recipeController(id);
     });
 
+    // add element to shopping list or to likes list
     document.querySelector(values.recipe).addEventListener('click', event => {
         if(event.target.matches(`${values.recipeBtn}, ${values.recipeBtn} *`)) {
             shoppingListControllerAdd();
@@ -60,23 +59,26 @@ const init = () => {
         }
     });
 
+    // delete element from shooping list by click on delete button
     document.querySelector(values.shoppingList).addEventListener('click', event => {
         if(event.target.matches(`${values.deleteBtn}, ${values.deleteBtn} *`)) {
-            const id = event.target.closest(values.shoppingItem).getAttribute(values.dataItemId);
-            shoppingListControllerDelete(state.recipe.id);
+            shoppingListControllerDelete();
         }
     });
 
+    // changes recipe by click on liked element
     document.querySelector(values.likesList).addEventListener('click', event => {
         event.preventDefault();
-        const elem = event.target.closest(values.likeListElem);
-        recipeController(elem.getAttribute('href'));
+        const elem = event.target.closest(values.likeListElem).getAttribute('href');
+        recipeController(elem);
     });
 
-    window.addEventListener("load", event => {
+    // load info from local storage or hash
+    window.addEventListener('load', () => {
 
         const likesList = JSON.parse(localStorage.getItem('likesList'));
         const shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
+        const hash = document.location.hash.replace('#','');
 
         if(likesList) {
             state.likesList.list = likesList;
@@ -86,11 +88,12 @@ const init = () => {
             state.shoppingList.list = shoppingList;
             shoppingListView.renderShoppingList(state.shoppingList.list);
         }
-        if(window.location.hash) {
-            recipeController(window.location.hash.replace('#',''));
+        if(hash) {
+            recipeController(hash);
         }
     });
 
+    // save all to localStorage if something changes
     window.addEventListener('click', () => {
         localStorage.setItem('likesList', JSON.stringify(state.likesList.list));
         localStorage.setItem('shoppingList', JSON.stringify(state.shoppingList.list));

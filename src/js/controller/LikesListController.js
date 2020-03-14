@@ -1,18 +1,18 @@
 import * as likesListView from "../view/LikesListView";
+import {toggleButton} from "../view/RecipeView";
 import {state} from "../index";
 
 export const likesListController = () => {
     //clear shoppingList UI
     likesListView.deleteLikesList();
-    // if true add to likesList
+    // if true add to likesList else delete from likesList
     if(state.likesList.isLiked(state.recipe)) {
         state.likesList.deleteItem(state.recipe);
     } else {
         state.likesList.addItem(state.recipe)
     }
-    //toggle button
-    state.likesList.isLiked(state.recipe);
-    likesListView.toggleButton(state.likesList.isLiked(state.recipe));
     //renderList
     likesListView.renderLikesList(state.likesList.list);
+    //render like button
+    toggleButton(state.likesList.isLiked(state.recipe));
 };
