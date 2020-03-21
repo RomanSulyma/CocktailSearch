@@ -7,8 +7,8 @@ export class List {
 
     addItem (recipe) {}
 
-    deleteItem (id) {
-        const index = this.list.findIndex( value => id === value.id);
+    deleteItem (recipe) {
+        const index = this.list.findIndex( value => recipe. id === value.id);
         this.list.splice(index, 1);
     }
 }

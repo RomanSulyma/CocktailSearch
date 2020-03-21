@@ -20,10 +20,8 @@ export const values = {
     likeButton : '.recipe__love',
     likeListElem : '.likes__link',
     dataPage : 'data-page',
-    imgLiked : 'img/icons.svg#icon-heart',
-    imgUnliked : 'img/icons.svg#icon-heart-outlined',
     dataItemId : 'data-item-id',
-    btnInline : '.btn-inline',
+    btnInline : '.btn-outline-primary',
     pagePrev : 'results__btn--prev',
     pageNext : 'results__btn--next'
 };

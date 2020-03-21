@@ -9,8 +9,6 @@ export const searchController = async () => {
     pageView.changePageNumber(1);
     // get input and clear input field
     state.searchInput = searchView.getSearchInput();
-    // add spinner to search form
-    searchView.toggleSpinner();
     // get recipes list
     state.recipesList = await getRecipes(state.searchInput);
     //clear UI

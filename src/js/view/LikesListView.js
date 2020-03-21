@@ -9,16 +9,12 @@ export const renderLikesList = (likesList) => {
 
     likesList.forEach(value => {
 
-        const elem = `<li>
-                            <a class="likes__link" href="${value.id}">
-                                <figure class="likes__fig">
-                                    <img src="${value.strDrinkThumb}" alt="Test">
-                                </figure>
-                                <div class="likes__data">
-                                    <h4 class="likes__name">${value.strDrink}</h4>
-                                </div>
-                            </a>
-                        </li>`;
+        const elem = `<div class="list-inline-item list-group-item-action col col-3 ml-0 mr-0 mt-2 rounded">
+                            <div class="likes__link" href="${value.id}">
+                                <img src="${value.strDrinkThumb}" class="img-thumbnail w-25">
+                                <span class="likes__name">${value.strDrink.slice(0,20)}...</span>
+                            </div>
+                    </div>`;
 
         document.querySelector(values.likesList).insertAdjacentHTML('beforeend', elem);
     });

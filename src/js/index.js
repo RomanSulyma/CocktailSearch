@@ -11,8 +11,10 @@ import {likesListController} from './controller/LikesListController';
 import {paginationController} from './controller/PaginationController';
 import {recipeController} from './controller/RecipeController';
 import {shoppingListControllerAdd, shoppingListControllerDelete} from './controller/ShoppingListController';
+import '../css/style.css';
 
 export let state = {};
+window.state = state;
 
 /**
  * Initialize app variables and add event listeners
@@ -33,7 +35,6 @@ const init = () => {
     document.querySelector(values.pageParent).addEventListener('click', event => {
 
         const pageClassName = event.target.closest(values.btnInline);
-        console.log(pageClassName);
         if(pageClassName.classList.contains(values.pagePrev)) {
             paginationController(parseInt(pageView.getPageNumber()) - 1);
         }
@@ -46,6 +47,7 @@ const init = () => {
     document.querySelector(values.resultsList).addEventListener('click', event => {
         const elem = event.target.closest(values.resultListElem);
         const id = elem.getAttribute('href').replace('#','');
+        window.location.hash = id;
         recipeController(id);
     });
 

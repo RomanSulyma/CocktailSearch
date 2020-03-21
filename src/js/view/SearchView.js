@@ -8,16 +8,11 @@ import {values} from '../Base';
 const renderRecipe = (recipe) => {
 
     const elem = `
-                <li>
-                    <a class="results__link" href="#${recipe.idDrink}">
-                        <figure class="results__fig">
-                            <img src="${recipe.strDrinkThumb}" alt="Test">
-                        </figure>
-                        <div class="results__data">
-                            <h4 class="results__name">${recipe.strDrink}</h4> 
-                        </div>
-                    </a>
-                </li>`;
+                    <div class="results__link list-item list-group-item-action border border-primary rounded m-2 py-2" data-href="${recipe.idDrink}" href="#${recipe.idDrink}">
+                        <img src="${recipe.strDrinkThumb}" class="img-thumbnail w-25 ml-2">
+                        <div class="results__data d-inline-block ml-3">${recipe.strDrink.slice(0,15)}...</div>
+                    </div>
+               `;
 
         document.querySelector(values.resultsList).insertAdjacentHTML('beforeend', elem);
 };
@@ -57,22 +52,4 @@ export const getSearchInput = () => {
 export const deleteSearchList = () => {
     document.querySelector(values.resultsList).innerHTML = '';
     document.querySelector(values.pageParent).innerHTML = '';
-};
-
-/**
- *  Toggle (show/hide) spinner
- */
-export const toggleSpinner = () => {
-    const loader = `<div class="${values.loader}">
-            <svg>
-                <use href="img/icons.svg#icon-cw"></use>
-            </svg>
-        </div> `;
-
-    const loaderElem = document.querySelector(values.loader);
-    if(loaderElem) {
-        loaderElem.parentNode.removeChild(loaderElem);
-    } else {
-        document.querySelector(values.resultsList).insertAdjacentHTML('afterbegin', loader);
-    }
 };

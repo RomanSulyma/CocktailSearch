@@ -1,0 +1,40 @@
+body {
+    background: radial-gradient(circle, rgba(34, 193, 195, 0.1) 0%, rgba(253, 187, 45, 0.6) 100%);
+}
+
+li {
+    background-color: rgba(34, 193, 195, 0.1);
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.recipe__details {
+    height: 90px;
+    overflow: hidden ;
+}
+
+h4, h2 {
+    color: #2fd560;
+    font-family: "Great Vibes", cursive;
+    font-weight: normal;
+    margin : 30px;
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
+}
+
+.recipe__info-text {
+    color: #5559d5;
+    font-size: 15px;
+    font-family: "Great Vibes", cursive;
+    font-weight: normal;
+    margin : 15px;
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
+}

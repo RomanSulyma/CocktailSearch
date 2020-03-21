@@ -7,45 +7,31 @@ import {values} from '../Base';
  */
 export const renderRecipe = (recipe) => {
 
-    const elem = `<figure class="recipe__fig">
-                <img src="${recipe.strDrinkThumb}" class="recipe__img">
-                <h1 class="recipe__title">
+    const elem = `<div class="recipe__fig">
+                <img src="${recipe.strDrinkThumb}" class="recipe__img img-thumbnail" style="width : 100%">
+                <h4 class="recipe__title dashed-shadow">
                     <span>${recipe.strDrink}</span>
-                </h1>
-            </figure>
+                </h4>
+            </div>
+
             <div class="recipe__details">
-                <div class="recipe__info">
-                    <svg class="recipe__info-icon">
-                        <use href="${recipe.strDrinkThumb}"></use>
-                    </svg>
-                </div>
-              
-                <div class="recipe__info">
-                    <svg class="recipe__info-icon">
-                        <use href="${recipe.strDrinkThumb}"></use>
-                    </svg>
-                </div>
-                <button class="recipe__love">
-                    <svg class="header__likes">
-                        <use href="img/icons.svg#icon-heart-outlined"></use>
-                    </svg>
-                </button>
+                <button class="recipe__love btn btn-block btn-outline-danger btn-circle btn-xl float-right " style="margin: 10px ; width: 20%"> <i class="fas fa-heart"></i></button>
+            </div>
+
+            <div class="recipe__instructions m-2">
+                    <span class="recipe__info-text">${recipe.strInstructions}</span>
             </div>
             
-                <div class="recipe__instructions">
-                    <span class="recipe__info-text"> ${recipe.strInstructions}</span>
-                </div>
-
             <div class="recipe__ingredients">
-                <ul class="recipe__ingredient-list">
+                <ul class="recipe__ingredient-list list-unstyled row mt-3 justify-content-center align-items-center">
+                
                 </ul>
-
-                <button class="btn-small recipe__btn">
-                    <svg class="search__icon">
-                        <use href="img/icons.svg#icon-shopping-cart"></use>
-                    </svg>
+                
+                <div class="text-center">
+                <button class="btn-small btn btn-outline-primary recipe__btn">
                     <span>Add to shopping list</span>
-                </button>
+                </button> 
+                </div>
             </div>`;
 
     document.querySelector(values.recipe).insertAdjacentHTML('beforeend', elem);
@@ -60,15 +46,11 @@ export const renderIngredients = (recipe) => {
 
     recipe.ingredients.forEach(value => {
 
-        const ingredient = `
-                        <li class="recipe__item">
-                        <svg class="recipe__icon">
-                            <use href="img/icons.svg#icon-check"></use>
-                        </svg>
-                        <div class="recipe__ingredient">
-                            <span class="recipe__unit">${value}</span>
-                        </div>
-                    </li>`;
+        const ingredient = `<li class="recipe__item list-item col col-5 border border-primary rounded m-2 py-2">
+                                <div class="recipe__ingredient">
+                                    <span class="recipe__unit"><i class="far fa-check-circle"></i> ${value.slice(0,20)}...</span>
+                                </div>
+                            </li>`;
 
         document.querySelector(values.ingredientsList).insertAdjacentHTML("beforeend", ingredient);
     });
@@ -80,8 +62,11 @@ export const renderIngredients = (recipe) => {
  * @param isLiked
  */
 export const toggleButton = (isLiked) => {
-    const elem = document.querySelector(`${values.likeButton} use`);
-    isLiked ? elem.setAttribute('href', values.imgLiked) : elem.setAttribute('href', values.imgUnliked);
+    if(isLiked) {
+        const elem = document.querySelector(values.likeButton);
+        elem.classList.toggle('btn-outline-danger');
+        elem.classList.toggle('btn-danger');
+    }
 };
 
 /**

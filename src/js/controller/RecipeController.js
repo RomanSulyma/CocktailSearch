@@ -12,8 +12,6 @@ export const recipeController = async (id) => {
     state.recipe = convertToRecipe(recipeElem);
     // render on UI
     recipeView.renderRecipe(state.recipe);
-    //toggle button
-    recipeView.toggleButton(state.likesList.isLiked(state.recipe));
     //Parse ingredients
     state.recipe.parseIngredients();
     // Render ingredients on UI

@@ -9,19 +9,14 @@ import {values} from "../Base";
 export const renderPageButtons = (page, allPages) => {
 
     page = parseInt(page);
-    const buttonLeft = ` <button class="btn-inline results__btn--prev"  data-page="${page - 1}">
-                    <span>Page ${page - 1}</span>
-                    <svg class="search__icon">
-                        <use href="img/icons.svg#icon-triangle-right"></use>
-                    </svg>
-                </button>`;
 
-    const buttonRight = `<button class="btn-inline results__btn--next" data-page="${page + 1}">
-                    <span>Page ${page + 1}</span>
-                    <svg class="search__icon">
-                        <use href="img/icons.svg#icon-triangle-right"></use>
-                    </svg>
-                </button>`;
+    const buttonLeft = `<button class="btn btn-outline-primary results__btn--prev float-left" style="margin: 10%" data-page="${page - 1}">
+                            <span>Page ${page - 1}</span>
+                        </button>`;
+
+    const buttonRight = `<button class="btn btn-outline-primary results__btn--next float-right" style="margin: 10%" data-page="${page + 1}">
+                            <span>Page ${page + 1}</span>
+                         </button>`;
 
     if(page > 1) {
         document.querySelector(values.pageParent).insertAdjacentHTML('beforeend', buttonLeft);
