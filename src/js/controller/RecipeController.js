@@ -17,5 +17,5 @@ export const recipeController = async (id) => {
     // Render ingredients on UI
     recipeView.renderIngredients(state.recipe);
     // Render Like button
-    recipeView.toggleButton(state.likesList.isLiked(state.recipe));
+    recipeView.renderButton(state.likesList.isLiked(state.recipe));
 };

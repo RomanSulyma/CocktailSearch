@@ -48,7 +48,7 @@ export const renderIngredients = (recipe) => {
 
         const ingredient = `<li class="recipe__item list-item col col-5 border border-primary rounded m-2 py-2">
                                 <div class="recipe__ingredient">
-                                    <span class="recipe__unit"><i class="far fa-check-circle"></i> ${value.slice(0,20)}...</span>
+                                    <span class="recipe__unit"><i class="far fa-check-circle"></i> ${value}</span>
                                 </div>
                             </li>`;
 
@@ -61,13 +61,23 @@ export const renderIngredients = (recipe) => {
  *
  * @param isLiked
  */
-export const toggleButton = (isLiked) => {
-    if(isLiked) {
+export const toggleButton = () => {
         const elem = document.querySelector(values.likeButton);
         elem.classList.toggle('btn-outline-danger');
         elem.classList.toggle('btn-danger');
-    }
 };
+
+export const renderButton = (isLiked) => {
+    const elem = document.querySelector(values.likeButton);
+    if(isLiked) {
+        elem.classList.remove('btn-outline-danger');
+        elem.classList.add('btn-danger');
+    } else {
+        elem.classList.add('btn-outline-danger');
+        elem.classList.remove('btn-danger');
+    }
+
+}
 
 /**
  * Clear Recipe

@@ -13,14 +13,7 @@ export class Recipe {
      *  Remove null elements from ingredients list
      */
     parseIngredients () {
-
-        this.ingredients = this.ingredients.filter( value => {
-            value = value.replace(null,'').replace(null, '');
-
-            if(!value.match(/^\s+$/)) {
-                return value;
-            }
-        });
+        this.ingredients = this.ingredients.filter( value => value !== null);
     }
 }
 
@@ -40,20 +33,20 @@ export const convertToRecipe = (recipeElem) => {
 
     let ingredients = [];
 
-    ingredients.push(`${recipeElem.strMeasure1} ${recipeElem.strIngredient1}`);
-    ingredients.push(`${recipeElem.strMeasure2} ${recipeElem.strIngredient2}`);
-    ingredients.push(`${recipeElem.strMeasure3} ${recipeElem.strIngredient3}`);
-    ingredients.push(`${recipeElem.strMeasure4} ${recipeElem.strIngredient4}`);
-    ingredients.push(`${recipeElem.strMeasure5} ${recipeElem.strIngredient5}`);
-    ingredients.push(`${recipeElem.strMeasure6} ${recipeElem.strIngredient6}`);
-    ingredients.push(`${recipeElem.strMeasure7} ${recipeElem.strIngredient7}`);
-    ingredients.push(`${recipeElem.strMeasure8} ${recipeElem.strIngredient8}`);
-    ingredients.push(`${recipeElem.strMeasure9} ${recipeElem.strIngredient9}`);
-    ingredients.push(`${recipeElem.strMeasure10} ${recipeElem.strIngredient10}`);
-    ingredients.push(`${recipeElem.strMeasure11} ${recipeElem.strIngredient11}`);
-    ingredients.push(`${recipeElem.strMeasure12} ${recipeElem.strIngredient12}`);
-    ingredients.push(`${recipeElem.strMeasure13} ${recipeElem.strIngredient13}`);
-    ingredients.push(`${recipeElem.strMeasure14} ${recipeElem.strIngredient14}`);
+    ingredients.push(recipeElem.strIngredient1);
+    ingredients.push(recipeElem.strIngredient2);
+    ingredients.push(recipeElem.strIngredient3);
+    ingredients.push(recipeElem.strIngredient4);
+    ingredients.push(recipeElem.strIngredient5);
+    ingredients.push(recipeElem.strIngredient6);
+    ingredients.push(recipeElem.strIngredient7);
+    ingredients.push(recipeElem.strIngredient8);
+    ingredients.push(recipeElem.strIngredient9);
+    ingredients.push(recipeElem.strIngredient10);
+    ingredients.push(recipeElem.strIngredient11);
+    ingredients.push(recipeElem.strIngredient12);
+    ingredients.push(recipeElem.strIngredient13);
+    ingredients.push(recipeElem.strIngredient14);
 
     recipe.ingredients = ingredients;
     return recipe;

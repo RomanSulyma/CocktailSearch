@@ -7,10 +7,13 @@ import {values} from '../Base';
  */
 const renderRecipe = (recipe) => {
 
+    // cut element name if bigger than 20
+    const elementName = recipe.strDrink.length <= 20 ? recipe.strDrink : `${recipe.strDrink.slice(0,20)}...`;
+
     const elem = `
                     <div class="results__link list-item list-group-item-action border border-primary rounded m-2 py-2" data-href="${recipe.idDrink}" href="#${recipe.idDrink}">
                         <img src="${recipe.strDrinkThumb}" class="img-thumbnail w-25 ml-2">
-                        <div class="results__data d-inline-block ml-3">${recipe.strDrink.slice(0,15)}...</div>
+                        <div class="results__data d-inline-block ml-3">${elementName}</div>
                     </div>
                `;
 

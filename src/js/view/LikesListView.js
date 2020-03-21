@@ -9,10 +9,10 @@ export const renderLikesList = (likesList) => {
 
     likesList.forEach(value => {
 
-        const elem = `<div class="list-inline-item list-group-item-action col col-3 ml-0 mr-0 mt-2 rounded">
+        const elem = `<div class="list-inline-item list-group-item-action col col-4 ml-0 mr-0 mt-2 rounded">
                             <div class="likes__link" href="${value.id}">
                                 <img src="${value.strDrinkThumb}" class="img-thumbnail w-25">
-                                <span class="likes__name">${value.strDrink.slice(0,20)}...</span>
+                                <span class="likes__name">${value.strDrink}</span>
                             </div>
                     </div>`;
 
